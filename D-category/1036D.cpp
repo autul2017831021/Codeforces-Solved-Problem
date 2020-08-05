@@ -81,47 +81,48 @@ int main()
 {
     ll n,m,ans=0;
     ne n;
-    ll c=0,d=0;
     for(int i=0;i<n;i++){
-        scanf("%lld",&a[i]);c+=a[i];
+        scanf("%lld",&a[i]);
     }
     ne m;
     for(int i=0;i<m;i++){
-        scanf("%lld",&b[i]);d+=b[i];
+        scanf("%lld",&b[i]);
     }
-    if(c!=d){mone;r0}
     ll i=0,j=0;
-    while(i<n && j<m)
+    while(i<n && j<m && ans>=0)
     {
         if(a[i]==b[j]){
             i++;j++;ans++;
         }
         else if(a[i]>b[j])
         {
-            ll choto=b[j];
+            ll choto=b[j],x=0;
             for(int k=j+1;k<m;k++){
                 if(choto+b[k]<a[i]){
                     choto+=b[k];
                 }
-                else if(choto+b[k]==a[i]){j=k;b[j]=a[i];break;}
+                else if(choto+b[k]==a[i]){j=k;b[j]=a[i];x++;break;}
                 else{
-                    j=k;b[k]=choto+b[k];break;
+                    j=k;b[k]=choto+b[k];x++;break;
                 }
             }
+            if(!x){ans=-1;}
         }
         else
         {
-            ll choto=a[i];
+            ll choto=a[i],x=0;
             for(int k=i+1;k<n;k++){
                 if(choto+a[k]<b[j]){
                     choto+=a[k];
                 }
-                else if(choto+a[k]==b[j]){i=k;a[i]=b[j];break;}
+                else if(choto+a[k]==b[j]){i=k;a[i]=b[j];x++;break;}
                 else{
-                    i=k;a[k]=choto+a[k];break;
+                    i=k;a[k]=choto+a[k];x++;break;
                 }
             }
+            if(!x){ans=-1;}
         }
     }
+    if(i<n || j<m)ans=-1;
     de ans;nl;
 }
